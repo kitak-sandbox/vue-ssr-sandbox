@@ -9,6 +9,7 @@ let compileTemplate = (options) => {
   });
   Object.assign(options, res);
   console.assert(typeof options.render === 'function');
+  console.log(options.render.toString());
   delete options.template;
   return options;
 };
@@ -17,10 +18,15 @@ let childComponent = Vue.extend(compileTemplate({
   props: ['message'],
   template: `
 <div>
-  <p>I am {{ name }}<br>
+  <p @click="hello">I am {{ name }}<br>
   message from parent: {{ message }}</p>
 </div>
   `,
+  methods: {
+    hello: function() {
+      console.log('hi');
+    }
+  },
   data: function() {
     return {
       name: 'child'
