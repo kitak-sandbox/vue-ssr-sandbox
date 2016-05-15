@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node --debug --presets es2015 -- index.js"
+    "start": "VUE_ENV=server babel-node --debug --presets es2015 -- index.js"
   },
   "repository": {
     "type": "git",

@@ -58,3 +58,5 @@ console.log(renderToString(new Vue(compileTemplate({
     root: rootComponent
   }
 }))));
+
+console.log(Vue.config._isServer);
