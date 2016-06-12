@@ -1,6 +1,6 @@
 import Vue from './vue/dist/vue.common.js';
-import { compileToFunctions } from './vue/dist/compiler.common.js';
-import createRenderer from './vue/dist/server-renderer';
+import { compileToFunctions } from './vue/packages/vue-template-compiler';
+import createRenderer from './vue/packages/vue-server-renderer';
 const { renderToString } = createRenderer();
 
 let compileTemplate = (options) => {
@@ -9,7 +9,6 @@ let compileTemplate = (options) => {
   });
   Object.assign(options, res);
   console.assert(typeof options.render === 'function');
-  console.log(options.render.toString());
   delete options.template;
   return options;
 };
@@ -52,11 +51,14 @@ let rootComponent = Vue.extend(compileTemplate({
   }
 }));
 
-console.log(renderToString(new Vue(compileTemplate({
+renderToString(new Vue(compileTemplate({
   template: `<root><root>`,
   components: {
     root: rootComponent
   }
-}))));
+})), (err, res) => {
+  console.log(err);
+  console.log(res);
+});
 
 console.log(Vue.config._isServer);
