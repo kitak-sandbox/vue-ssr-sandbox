@@ -1,6 +1,6 @@
 import Vue from './vue/dist/vue.common.js';
 import { compileToFunctions } from './vue/packages/vue-template-compiler';
-import createRenderer from './vue/packages/vue-server-renderer';
+import { createRenderer } from './vue/packages/vue-server-renderer';
 const { renderToString } = createRenderer();
 
 let compileTemplate = (options) => {
